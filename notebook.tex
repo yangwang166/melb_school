@@ -1,0 +1,1073 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{myschool}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{psycopg2}
+         \PY{k+kn}{import} \PY{n+nn}{sqlalchemy}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{sqlalchemy} \PY{k}{import} \PY{n}{create\PYZus{}engine} 
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Postgres username, password, and database name }
+         \PY{n}{POSTGRES\PYZus{}ADDRESS} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{192.168.0.56}\PY{l+s+s1}{\PYZsq{}}  
+         \PY{n}{POSTGRES\PYZus{}PORT} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5432}\PY{l+s+s1}{\PYZsq{}} 
+         \PY{n}{POSTGRES\PYZus{}USERNAME} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{willwy}\PY{l+s+s1}{\PYZsq{}} 
+         \PY{n}{POSTGRES\PYZus{}PASSWORD} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{willwy}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{POSTGRES\PYZus{}DBNAME} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{willwy}\PY{l+s+s1}{\PYZsq{}}
+         \PY{c+c1}{\PYZsh{} A long string that contains the necessary Postgres login information }
+         \PY{n}{postgres\PYZus{}str} \PY{o}{=} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{postgresql://}\PY{l+s+si}{\PYZob{}username\PYZcb{}}\PY{l+s+s1}{:}\PY{l+s+si}{\PYZob{}password\PYZcb{}}\PY{l+s+s1}{@}\PY{l+s+si}{\PYZob{}ipaddress\PYZcb{}}\PY{l+s+s1}{:}\PY{l+s+si}{\PYZob{}port\PYZcb{}}\PY{l+s+s1}{/}\PY{l+s+si}{\PYZob{}dbname\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{username}\PY{o}{=}\PY{n}{POSTGRES\PYZus{}USERNAME}\PY{p}{,} 
+                                                                                                 \PY{n}{password}\PY{o}{=}\PY{n}{POSTGRES\PYZus{}PASSWORD}\PY{p}{,} 
+         
+                                                                                                 \PY{n}{ipaddress}\PY{o}{=}\PY{n}{POSTGRES\PYZus{}ADDRESS}\PY{p}{,} 
+                                                                                                 \PY{n}{port}\PY{o}{=}\PY{n}{POSTGRES\PYZus{}PORT}\PY{p}{,} 
+                                                                                                 \PY{n}{dbname}\PY{o}{=}\PY{n}{POSTGRES\PYZus{}DBNAME}\PY{p}{)}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{} Create the connection }
+         \PY{n}{cnx} \PY{o}{=} \PY{n}{create\PYZus{}engine}\PY{p}{(}\PY{n}{postgres\PYZus{}str}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{all\PYZus{}school} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range FROM myschool;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{take-a-look-of-myschool-data}{%
+\section{Take a look of MySchool
+data}\label{take-a-look-of-myschool-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{all\PYZus{}school}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}                                      name   icsea      suburb school\_type  \textbackslash{}
+         0                 Alberton Primary School   963.0    Alberton     Primary   
+         1  Allansford and District Primary School  1003.0  Allansford     Primary   
+         2                    Avoca Primary School   969.0       Avoca     Primary   
+         3                   Avenel Primary School  1026.0      Avenel     Primary   
+         4               Warrandyte Primary School  1116.0  Warrandyte     Primary   
+         
+                sector year\_range  
+         0  Government     Prep-6  
+         1  Government     Prep-6  
+         2  Government     Prep-6  
+         3  Government     Prep-6  
+         4  Government     Prep-6  
+\end{Verbatim}
+            
+    \hypertarget{the-histogram-of-icsea-score}{%
+\section{The histogram of ICSEA
+score}\label{the-histogram-of-icsea-score}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{all\PYZus{}school}\PY{o}{.}\PY{n}{icsea}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x7f39a2fdf710>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{school-type-count}{%
+\section{School Type count}\label{school-type-count}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT school\PYZus{}type, count(*) as num from myschool group by school\PYZus{}type}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:}   school\_type   num
+         0   Secondary   299
+         1    Combined   211
+         2     Special    81
+         3     Primary  1491
+\end{Verbatim}
+            
+    \hypertarget{government-vs-non-government}{%
+\section{Government VS
+Non-government}\label{government-vs-non-government}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT sector, school\PYZus{}type, count(*) as num from myschool group by sector, school\PYZus{}type order by sector, school\PYZus{}type}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:}            sector school\_type   num
+         0      Government    Combined    62
+         1      Government     Primary  1085
+         2      Government   Secondary   215
+         3      Government     Special    72
+         4  Non-government    Combined   149
+         5  Non-government     Primary   406
+         6  Non-government   Secondary    84
+         7  Non-government     Special     9
+\end{Verbatim}
+            
+    \hypertarget{the-most-majority-of-school-type-and-year-range}{%
+\section{The most majority of school type and year
+range}\label{the-most-majority-of-school-type-and-year-range}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT school\PYZus{}type, year\PYZus{}range, count(*) as num }
+         \PY{l+s+s1}{from myschool }
+         \PY{l+s+s1}{group by school\PYZus{}type, year\PYZus{}range having count(*)\PYZgt{}10 }
+         \PY{l+s+s1}{order by school\PYZus{}type, year\PYZus{}range}
+         \PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:}   school\_type year\_range   num
+         0    Combined    Prep-12   174
+         1    Combined     Prep-9    13
+         2     Primary     Prep-5    18
+         3     Primary     Prep-6  1445
+         4   Secondary       7-12   279
+         5     Special          U    73
+\end{Verbatim}
+            
+    \hypertarget{government-primary-rank-top-50}{%
+\section{Government Primary Rank top
+50}\label{government-primary-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Primary}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:}                                    name  icsea           suburb school\_type  \textbackslash{}
+         0             Camberwell Primary School   1195       Camberwell     Primary   
+         1             Alphington Primary School   1188       Alphington     Primary   
+         2                Gruyere Primary School   1184          Gruyere     Primary   
+         3           Clifton Hill Primary School   1184     Clifton Hill     Primary   
+         4            Merri Creek Primary School   1183    Fitzroy North     Primary   
+         5              Westgarth Primary School   1181        Northcote     Primary   
+         6             Canterbury Primary School   1181       Canterbury     Primary   
+         7               Deepdene Primary School   1180           Balwyn     Primary   
+         8                 Balwyn Primary School   1179           Balwyn     Primary   
+         9              Glen Iris Primary School   1178        Glen Iris     Primary   
+         10          Auburn South Primary School   1177    Hawthorn East     Primary   
+         11              Hartwell Primary School   1175       Camberwell     Primary   
+         12           South Yarra Primary School   1168      South Yarra     Primary   
+         13               Hampton Primary School   1168          Hampton     Primary   
+         14             Ashburton Primary School   1167        Ashburton     Primary   
+         15             Caulfield Junior College   1166  Caulfield North     Primary   
+         16          Ivanhoe East Primary School   1165     Ivanhoe East     Primary   
+         17               Malvern Central School   1164          Malvern     Primary   
+         18              Kew East Primary School   1164         Kew East     Primary   
+         19               Malvern Primary School   1162     Malvern East     Primary   
+         20             Fairfield Primary School   1162        Fairfield     Primary   
+         21                Auburn Primary School   1161    Hawthorn East     Primary   
+         22  Brunswick South West Primary School   1161   Brunswick West     Primary   
+         23          Lloyd Street Primary School   1161     Malvern East     Primary   
+         24         Fitzroy North Primary School   1160    Fitzroy North     Primary   
+         25           Wattle Park Primary School   1159          Burwood     Primary   
+         26               Serpell Primary School   1159      Templestowe     Primary   
+         27            Gardenvale Primary School   1158    Brighton East     Primary   
+         28            Glenferrie Primary School   1157         Hawthorn     Primary   
+         29             Northcote Primary School   1157        Northcote     Primary   
+         30      Camberwell South Primary School   1156        Glen Iris     Primary   
+         31           Eltham East Primary School   1156           Eltham     Primary   
+         32         St Kilda Park Primary School   1155         St Kilda     Primary   
+         33                  Bell Primary School   1155          Preston     Primary   
+         34       Spensley Street Primary School   1153     Clifton Hill     Primary   
+         35              Armadale Primary School   1153         Armadale     Primary   
+         36           Middle Park Primary School   1153      Middle Park     Primary   
+         37           Elsternwick Primary School   1153         Brighton     Primary   
+         38        Brunswick East Primary School   1152   Brunswick East     Primary   
+         39          Surrey Hills Primary School   1152     Surrey Hills     Primary   
+         40         Wheelers Hill Primary School   1152    Wheelers Hill     Primary   
+         41               Banyule Primary School   1152          Rosanna     Primary   
+         42            Kensington Primary School   1152       Kensington     Primary   
+         43          Camelot Rise Primary School   1151    Glen Waverley     Primary   
+         44               Glendal Primary School   1151    Glen Waverley     Primary   
+         45           Mont Albert Primary School   1151      Mont Albert     Primary   
+         46                Ormond Primary School   1150           Ormond     Primary   
+         47                Solway Primary School   1149        Ashburton     Primary   
+         48              Brighton Primary School   1148         Brighton     Primary   
+         49            Mount View Primary School   1147    Glen Waverley     Primary   
+         
+                 sector year\_range  
+         0   Government     Prep-6  
+         1   Government     Prep-6  
+         2   Government     Prep-6  
+         3   Government     Prep-6  
+         4   Government     Prep-6  
+         5   Government     Prep-6  
+         6   Government     Prep-6  
+         7   Government     Prep-6  
+         8   Government     Prep-6  
+         9   Government     Prep-6  
+         10  Government     Prep-6  
+         11  Government     Prep-6  
+         12  Government     Prep-6  
+         13  Government     Prep-6  
+         14  Government     Prep-6  
+         15  Government     Prep-6  
+         16  Government     Prep-6  
+         17  Government     Prep-6  
+         18  Government     Prep-6  
+         19  Government     Prep-6  
+         20  Government     Prep-6  
+         21  Government     Prep-6  
+         22  Government     Prep-6  
+         23  Government     Prep-6  
+         24  Government     Prep-6  
+         25  Government     Prep-6  
+         26  Government     Prep-6  
+         27  Government     Prep-6  
+         28  Government     Prep-6  
+         29  Government     Prep-6  
+         30  Government     Prep-6  
+         31  Government     Prep-6  
+         32  Government     Prep-6  
+         33  Government     Prep-6  
+         34  Government     Prep-6  
+         35  Government     Prep-6  
+         36  Government     Prep-6  
+         37  Government     Prep-6  
+         38  Government     Prep-6  
+         39  Government     Prep-6  
+         40  Government     Prep-6  
+         41  Government     Prep-6  
+         42  Government     Prep-6  
+         43  Government     Prep-6  
+         44  Government     Prep-6  
+         45  Government     Prep-6  
+         46  Government     Prep-6  
+         47  Government     Prep-6  
+         48  Government     Prep-6  
+         49  Government     Prep-6  
+\end{Verbatim}
+            
+    \hypertarget{non-government-primary-rank-top-50}{%
+\section{Non-Government Primary Rank top
+50}\label{non-government-primary-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Non\PYZhy{}government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Primary}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:}                                              name  icsea           suburb  \textbackslash{}
+         0                        Fitzroy Community School   1208    Fitzroy North   
+         1                    Christ Church Grammar School   1205      South Yarra   
+         2                             St Cecilia's School   1191        Glen Iris   
+         3                          Erasmus Primary School   1185         Hawthorn   
+         4                             Sacred Heart School   1181              Kew   
+         5                              St Joseph's School   1181         Hawthorn   
+         6                             St Michael's School   1175        Ashburton   
+         7            Our Lady of Perpetual Succour School   1173     Surrey Hills   
+         8                 Our Lady of Good Counsel School   1170         Deepdene   
+         9                             St Dominic's School   1168       Camberwell   
+         10                          St Joan of Arc School   1166         Brighton   
+         11                             St Joseph's School   1163      Elsternwick   
+         12                               St Mary's School   1163          Hampton   
+         13                               St Roch's School   1161        Glen Iris   
+         14                             St Joseph's School   1159          Malvern   
+         15  Plenty Valley International Montessori School   1156        St Helena   
+         16                      Westbourne Grammar School   1156          Newport   
+         17                       Our Holy Redeemer School   1156     Surrey Hills   
+         18                     Our Lady of Lourdes School   1155          Prahran   
+         19                        Sholem Aleichem College   1155      Elsternwick   
+         20                               St James' School   1151         Brighton   
+         21                               St Mary's School   1148     Malvern East   
+         22                         St Bernadette's School   1148          Ivanhoe   
+         23                            St Patrick's School   1147      Murrumbeena   
+         24                            Sacred Heart School   1143      Sandringham   
+         25                               St Mary's School   1142     Williamstown   
+         26                    Holy Trinity Primary School   1141     Eltham North   
+         27                            St Columba's School   1139           Elwood   
+         28       Galilee Regional Catholic Primary School   1139  South Melbourne   
+         29                               St Bede's School   1138     Balwyn North   
+         30                         Mary Immaculate School   1137          Ivanhoe   
+         31                            Stella Maris School   1135        Beaumaris   
+         32                             St Finbar's School   1135    Brighton East   
+         33                    St Vincent de Paul's School   1135       Strathmore   
+         34             Our Lady Help of Christians School   1134           Eltham   
+         35                            St Anthony's School   1133       Alphington   
+         36                           Good Shepherd School   1132    Wheelers Hill   
+         37                               St Anne's School   1131         Kew East   
+         38          Good Shepherd Lutheran Primary School   1129    Croydon Hills   
+         39                             St Joseph's School   1129   Brunswick West   
+         40                     St Monica's Primary School   1129     Moonee Ponds   
+         41                   St Thomas the Apostle School   1127        Blackburn   
+         42                            St Bridget's School   1127     Balwyn North   
+         43                               St James' School   1126          Vermont   
+         44                              St Kevin's School   1126           Ormond   
+         45                   St Margaret's Primary School   1125      Maribyrnong   
+         46                            St Leonard's School   1125    Glen Waverley   
+         47                        St Christopher's School   1125    Glen Waverley   
+         48                      St Martin of Tours School   1124          Rosanna   
+         49                     St Francis Xavier's School   1124         Box Hill   
+         
+            school\_type          sector year\_range  
+         0      Primary  Non-government     Prep-6  
+         1      Primary  Non-government     Prep-6  
+         2      Primary  Non-government     Prep-6  
+         3      Primary  Non-government     Prep-6  
+         4      Primary  Non-government     Prep-6  
+         5      Primary  Non-government     Prep-6  
+         6      Primary  Non-government     Prep-6  
+         7      Primary  Non-government     Prep-6  
+         8      Primary  Non-government     Prep-6  
+         9      Primary  Non-government     Prep-6  
+         10     Primary  Non-government     Prep-6  
+         11     Primary  Non-government     Prep-6  
+         12     Primary  Non-government     Prep-6  
+         13     Primary  Non-government     Prep-6  
+         14     Primary  Non-government     Prep-6  
+         15     Primary  Non-government     Prep-6  
+         16     Primary  Non-government     Prep-3  
+         17     Primary  Non-government     Prep-6  
+         18     Primary  Non-government     Prep-6  
+         19     Primary  Non-government     Prep-6  
+         20     Primary  Non-government     Prep-6  
+         21     Primary  Non-government     Prep-6  
+         22     Primary  Non-government     Prep-6  
+         23     Primary  Non-government     Prep-6  
+         24     Primary  Non-government     Prep-6  
+         25     Primary  Non-government     Prep-6  
+         26     Primary  Non-government     Prep-6  
+         27     Primary  Non-government     Prep-6  
+         28     Primary  Non-government     Prep-6  
+         29     Primary  Non-government     Prep-6  
+         30     Primary  Non-government     Prep-6  
+         31     Primary  Non-government     Prep-6  
+         32     Primary  Non-government     Prep-6  
+         33     Primary  Non-government     Prep-6  
+         34     Primary  Non-government     Prep-6  
+         35     Primary  Non-government     Prep-6  
+         36     Primary  Non-government     Prep-6  
+         37     Primary  Non-government     Prep-6  
+         38     Primary  Non-government     Prep-6  
+         39     Primary  Non-government     Prep-6  
+         40     Primary  Non-government     Prep-6  
+         41     Primary  Non-government     Prep-6  
+         42     Primary  Non-government     Prep-6  
+         43     Primary  Non-government     Prep-6  
+         44     Primary  Non-government     Prep-6  
+         45     Primary  Non-government     Prep-6  
+         46     Primary  Non-government     Prep-6  
+         47     Primary  Non-government     Prep-6  
+         48     Primary  Non-government     Prep-6  
+         49     Primary  Non-government     Prep-6  
+\end{Verbatim}
+            
+    \hypertarget{government-secondary-rank-top-50}{%
+\section{Government Secondary Rank top
+50¶}\label{government-secondary-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Secondary}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}60}]:}                                               name  icsea             suburb  \textbackslash{}
+         0                   MacRobertson Girls High School   1183          Melbourne   
+         1                            Melbourne High School   1170        South Yarra   
+         2                   Princes Hill Secondary College   1155       Princes Hill   
+         3   Victorian College Of The Arts Secondary School   1143          Southbank   
+         4                               Nossal High School   1132            Berwick   
+         5                               Balwyn High School   1131       Balwyn North   
+         6                             Box Hill High School   1128           Box Hill   
+         7                           University High School   1127          Parkville   
+         8               Canterbury Girls Secondary College   1124         Canterbury   
+         9                       Mckinnon Secondary College   1123           Mckinnon   
+         10                         Melbourne Girls College   1114           Richmond   
+         11                           Northcote High School   1114          Northcote   
+         12                          Camberwell High School   1112         Canterbury   
+         13                 Glen Waverley Secondary College   1103      Glen Waverley   
+         14                                Viewbank College   1100            Rosanna   
+         15                             Fitzroy High School   1099      Fitzroy North   
+         16                                  Elwood College   1097             Elwood   
+         17                Mount Waverley Secondary College   1096     Mount Waverley   
+         18                               Glen Eira College   1092     Caulfield East   
+         19                      Brighton Secondary College   1092      Brighton East   
+         20                East Doncaster Secondary College   1090     Doncaster East   
+         21                             Templestowe College   1090  Templestowe Lower   
+         22                       Koonung Secondary College   1088  Mont Albert North   
+         23                            Buckley Park College   1084           Essendon   
+         24                           Blackburn High School   1082          Blackburn   
+         25                              Eltham High School   1081             Eltham   
+         26                     Brentwood Secondary College   1078      Glen Waverley   
+         27                                 Kew High School   1077           Kew East   
+         28                    Strathmore Secondary College   1077         Strathmore   
+         29                       Vermont Secondary College   1076            Vermont   
+         30                      Highvale Secondary College   1075      Glen Waverley   
+         31                 Mentone Girls Secondary College   1073            Mentone   
+         32                     Brunswick Secondary College   1070          Brunswick   
+         33                     Doncaster Secondary College   1059          Doncaster   
+         34                           Frankston High School   1059          Frankston   
+         35                      Parkdale Secondary College   1057         Mordialloc   
+         36                     St Helena Secondary College   1056       Eltham North   
+         37                     Bentleigh Secondary College   1055     Bentleigh East   
+         38                             Ashwood High School   1054            Ashwood   
+         39                   Mount Eliza Secondary College   1051        Mount Eliza   
+         40                    Cheltenham Secondary College   1046         Cheltenham   
+         41                      Ringwood Secondary College   1046           Ringwood   
+         42                   Montmorency Secondary College   1040        Montmorency   
+         43                      Mullauna Secondary College   1039            Mitcham   
+         44                              Mordialloc College   1038         Mordialloc   
+         45                  Mount Beauty Secondary College   1037       Mount Beauty   
+         46                          Warrandyte High School   1034         Warrandyte   
+         47                             Forest Hill College   1033       Burwood East   
+         48                             Belmont High School   1032            Belmont   
+         49                      Werribee Secondary College   1031           Werribee   
+         
+            school\_type      sector year\_range  
+         0    Secondary  Government       9-12  
+         1    Secondary  Government       9-12  
+         2    Secondary  Government       7-12  
+         3    Secondary  Government       7-12  
+         4    Secondary  Government       9-12  
+         5    Secondary  Government       7-12  
+         6    Secondary  Government       7-12  
+         7    Secondary  Government       7-12  
+         8    Secondary  Government       7-12  
+         9    Secondary  Government       7-12  
+         10   Secondary  Government       7-12  
+         11   Secondary  Government       7-12  
+         12   Secondary  Government       7-12  
+         13   Secondary  Government       7-12  
+         14   Secondary  Government       7-12  
+         15   Secondary  Government       7-12  
+         16   Secondary  Government       7-12  
+         17   Secondary  Government       7-12  
+         18   Secondary  Government    U, 7-12  
+         19   Secondary  Government       7-12  
+         20   Secondary  Government       7-12  
+         21   Secondary  Government       7-12  
+         22   Secondary  Government       7-12  
+         23   Secondary  Government       7-12  
+         24   Secondary  Government       7-12  
+         25   Secondary  Government       7-12  
+         26   Secondary  Government       7-12  
+         27   Secondary  Government       7-12  
+         28   Secondary  Government       7-12  
+         29   Secondary  Government       7-12  
+         30   Secondary  Government       7-12  
+         31   Secondary  Government       7-12  
+         32   Secondary  Government       7-12  
+         33   Secondary  Government       7-12  
+         34   Secondary  Government       7-12  
+         35   Secondary  Government       7-12  
+         36   Secondary  Government       7-12  
+         37   Secondary  Government       7-12  
+         38   Secondary  Government       7-12  
+         39   Secondary  Government       7-12  
+         40   Secondary  Government       7-12  
+         41   Secondary  Government       7-12  
+         42   Secondary  Government       7-12  
+         43   Secondary  Government       7-12  
+         44   Secondary  Government       7-12  
+         45   Secondary  Government       7-12  
+         46   Secondary  Government       7-12  
+         47   Secondary  Government       7-12  
+         48   Secondary  Government       7-12  
+         49   Secondary  Government       7-12  
+\end{Verbatim}
+            
+    \hypertarget{non-government-secondary-rank-top-50}{%
+\section{Non-Government Secondary Rank top
+50¶}\label{non-government-secondary-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Non\PYZhy{}government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Secondary}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}61}]:}                                           name  icsea            suburb  \textbackslash{}
+         0                            Siena College Ltd   1132        Camberwell   
+         1                      Star of the Sea College   1118          Brighton   
+         2                               Luther College   1110           Croydon   
+         3                 Catholic Ladies' College Ltd   1103            Eltham   
+         4                            Marcellin College   1100           Bulleen   
+         5                     Our Lady of Sion College   1098          Box Hill   
+         6                                 Alia College   1097     Hawthorn East   
+         7                    Our Lady of Mercy College   1096        Heidelberg   
+         8                      Whitefriars College Inc   1095           Donvale   
+         9                            St Bede's College   1095           Mentone   
+         10                               Avila College   1094    Mount Waverley   
+         11                        St Columba's College   1093          Essendon   
+         12                 Sacred Heart Girls' College   1090          Oakleigh   
+         13                Presentation College Windsor   1089           Windsor   
+         14                         Santa Maria College   1088         Northcote   
+         15    Nunawading Christian College - Secondary   1085        Nunawading   
+         16                        Sacred Heart College   1083           Newtown   
+         17                            Salesian College   1081         Chadstone   
+         18                             Mazenod College   1079          Mulgrave   
+         19                  Academy of Mary Immaculate   1078           Fitzroy   
+         20        Our Lady of the Sacred Heart College   1076         Bentleigh   
+         21                          St James'  College   1071    Bentleigh East   
+         22                              Loyola College   1070          Watsonia   
+         23                              Emmaus College   1070     Vermont South   
+         24                              Loreto College   1067          Ballarat   
+         25              Mount St Joseph Girls' College   1067            Altona   
+         26                        St Bernard's College   1064          Essendon   
+         27                             Aquinas College   1064          Ringwood   
+         28                           Ave Maria College   1063        Aberfeldie   
+         29                 St Joseph's College Geelong   1062           Newtown   
+         30                              Parade College   1059          Bundoora   
+         31                        Sacred Heart College   1059           Kyneton   
+         32                       Mater Christi College   1059          Belgrave   
+         33                 Christian Brothers' College   1058     St Kilda East   
+         34                               Padua College   1058        Mornington   
+         35                            Kilbreda College   1058           Mentone   
+         36              Saint Ignatius College Geelong   1057          Drysdale   
+         37                            Salesian College   1055           Sunbury   
+         38                            Emmanuel College   1055      Altona North   
+         39                         St Aloysius College   1048   North Melbourne   
+         40                            Damascus College   1046       Mount Clear   
+         41               St Patrick's College Ballarat   1044          Ballarat   
+         42                          Assumption College   1041           Kilmore   
+         43  Catholic Regional College Caroline Springs   1040  Caroline Springs   
+         44                       Emmanuel College Inc.   1037       Warrnambool   
+         45                           John Paul College   1036         Frankston   
+         46      Catholic Regional College North Keilor   1036      Keilor Lodge   
+         47                Mount Lilydale Mercy College   1035          Lilydale   
+         48                   St Mary MacKillop College   1035         Swan Hill   
+         49                    Catholic College Wodonga   1034           Wodonga   
+         
+            school\_type          sector year\_range  
+         0    Secondary  Non-government       7-12  
+         1    Secondary  Non-government       7-12  
+         2    Secondary  Non-government       7-12  
+         3    Secondary  Non-government       7-12  
+         4    Secondary  Non-government       7-12  
+         5    Secondary  Non-government       7-12  
+         6    Secondary  Non-government       7-12  
+         7    Secondary  Non-government       7-12  
+         8    Secondary  Non-government       7-12  
+         9    Secondary  Non-government       7-12  
+         10   Secondary  Non-government       7-12  
+         11   Secondary  Non-government       7-12  
+         12   Secondary  Non-government       7-12  
+         13   Secondary  Non-government       7-12  
+         14   Secondary  Non-government       7-12  
+         15   Secondary  Non-government       7-12  
+         16   Secondary  Non-government       7-12  
+         17   Secondary  Non-government       7-12  
+         18   Secondary  Non-government       7-12  
+         19   Secondary  Non-government       7-12  
+         20   Secondary  Non-government       7-12  
+         21   Secondary  Non-government       7-10  
+         22   Secondary  Non-government       7-12  
+         23   Secondary  Non-government       7-12  
+         24   Secondary  Non-government       7-12  
+         25   Secondary  Non-government       7-12  
+         26   Secondary  Non-government       7-12  
+         27   Secondary  Non-government       7-12  
+         28   Secondary  Non-government       7-12  
+         29   Secondary  Non-government       7-12  
+         30   Secondary  Non-government       7-12  
+         31   Secondary  Non-government       7-12  
+         32   Secondary  Non-government       7-12  
+         33   Secondary  Non-government       7-12  
+         34   Secondary  Non-government       7-12  
+         35   Secondary  Non-government       7-12  
+         36   Secondary  Non-government       7-12  
+         37   Secondary  Non-government       7-12  
+         38   Secondary  Non-government       7-12  
+         39   Secondary  Non-government       7-12  
+         40   Secondary  Non-government       7-12  
+         41   Secondary  Non-government       7-12  
+         42   Secondary  Non-government       7-12  
+         43   Secondary  Non-government       7-10  
+         44   Secondary  Non-government       7-12  
+         45   Secondary  Non-government       7-12  
+         46   Secondary  Non-government       7-10  
+         47   Secondary  Non-government       7-12  
+         48   Secondary  Non-government       7-12  
+         49   Secondary  Non-government       7-12  
+\end{Verbatim}
+            
+    \hypertarget{government-combined-rank-top-50}{%
+\section{Government combined Rank top
+50¶}\label{government-combined-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Combined}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:}                                   name  icsea             suburb school\_type  \textbackslash{}
+         0     Point Cook Prep - Year 9 College   1064         Point Cook    Combined   
+         1                  Collingwood College   1060        Collingwood    Combined   
+         2   Distance Education Centre Victoria   1057          Thornbury    Combined   
+         3                  Bright P-12 College   1057             Bright    Combined   
+         4    Box Hill Senior Secondary College   1045  Mont Albert North    Combined   
+         5              Apollo Bay P-12 College   1031         Apollo Bay    Combined   
+         6                      Macleod College   1028            Macleod    Combined   
+         7                 Timbarra P-9 College   1022            Berwick    Combined   
+         8                Creekside K-9 College   1020   Caroline Springs    Combined   
+         9             Carranballac P-9 College   1019         Point Cook    Combined   
+         10             Mallacoota P-12 College   1019         Mallacoota    Combined   
+         11               Brookside P-9 College   1018   Caroline Springs    Combined   
+         12         Sherbrooke Community School   1017          Sassafras    Combined   
+         13     Balmoral K-12 Community College   1017           Balmoral    Combined   
+         14              Springside P-9 College   1015   Caroline Springs    Combined   
+         15            Baden Powell P-9 College   1005   Hoppers Crossing    Combined   
+         16                  Altona P-9 College   1002             Altona    Combined   
+         
+                 sector  year\_range  
+         0   Government      Prep-9  
+         1   Government  U, Prep-12  
+         2   Government     Prep-12  
+         3   Government     Prep-12  
+         4   Government        7-12  
+         5   Government     Prep-12  
+         6   Government     Prep-12  
+         7   Government      Prep-9  
+         8   Government      Prep-9  
+         9   Government      Prep-9  
+         10  Government     Prep-12  
+         11  Government      Prep-9  
+         12  Government     Prep-12  
+         13  Government     Prep-12  
+         14  Government      Prep-9  
+         15  Government      Prep-9  
+         16  Government      Prep-9  
+\end{Verbatim}
+            
+    \hypertarget{non-government-combined-rank-top-50}{%
+\section{Non-Government combined Rank top
+50¶}\label{non-government-combined-rank-top-50}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql\PYZus{}query}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{SELECT name, icsea, suburb, school\PYZus{}type, sector, year\PYZus{}range}
+         \PY{l+s+s1}{FROM myschool }
+         \PY{l+s+s1}{where sector=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Non\PYZhy{}government}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and school\PYZus{}type=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Combined}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and icsea\PYZgt{}1000}
+         \PY{l+s+s1}{order by icsea desc }
+         \PY{l+s+s1}{limit 50;}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{,} \PY{n}{cnx}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:}                                     name  icsea  \textbackslash{}
+         0                  Fintona Girls' School   1210   
+         1           Presbyterian Ladies' College   1206   
+         2          Korowa Anglican Girls' School   1197   
+         3                Lauriston Girls' School   1197   
+         4                         Scotch College   1193   
+         5        Camberwell Girls Grammar School   1186   
+         6              Camberwell Grammar School   1185   
+         7                     St Kevin's College   1185   
+         8             Trinity Grammar School Kew   1184   
+         9                    Huntingtower School   1183   
+         10             Methodist Ladies' College   1183   
+         11          Carey Baptist Grammar School   1182   
+         12                  Ruyton Girls' School   1181   
+         13              Melbourne Grammar School   1180   
+         14                           Sacre Coeur   1178   
+         15                  St Leonard's College   1177   
+         16                    Haileybury College   1175   
+         17         Mount Scopus Memorial College   1174   
+         18             Kilvington Grammar School   1172   
+         19                 The King David School   1171   
+         20                Loreto Mandeville Hall   1168   
+         21         Mentone Girls' Grammar School   1167   
+         22                Firbank Grammar School   1164   
+         23            Ballarat Clarendon College   1161   
+         24                     Kingswood College   1161   
+         25    Penleigh \& Essendon Grammar School   1161   
+         26     Strathcona Baptist Girls' Grammar   1160   
+         27                 St Catherine's School   1159   
+         28         Ivanhoe Girls' Grammar School   1159   
+         29          St Andrews Christian College   1158   
+         30               Shelford Girls' Grammar   1157   
+         31                        Bialik College   1157   
+         32           St Michael's Grammar School   1154   
+         33                        Xavier College   1153   
+         34               Melbourne Girls Grammar   1151   
+         35                        Wesley College   1149   
+         36               Brighton Grammar School   1147   
+         37             Donvale Christian College   1147   
+         38                Ivanhoe Grammar School   1145   
+         39                       Tintern Grammar   1143   
+         40             Westbourne Grammar School   1143   
+         41                Mentone Grammar School   1141   
+         42  Lowther Hall Anglican Grammar School   1140   
+         43           Heathdale Christian College   1139   
+         44                               Preshil   1139   
+         45                        Toorak College   1137   
+         46                  Yarra Valley Grammar   1137   
+         47            Waverley Christian College   1136   
+         48                  St Margaret's School   1135   
+         49        Goulburn Valley Grammar School   1132   
+         
+                                          suburb school\_type          sector year\_range  
+         0                                Balwyn    Combined  Non-government    Prep-12  
+         1                               Burwood    Combined  Non-government    Prep-12  
+         2                             Glen Iris    Combined  Non-government    Prep-12  
+         3                              Armadale    Combined  Non-government    Prep-12  
+         4                              Hawthorn    Combined  Non-government    Prep-12  
+         5                            Canterbury    Combined  Non-government    Prep-12  
+         6                            Canterbury    Combined  Non-government    Prep-12  
+         7                                Toorak    Combined  Non-government    Prep-12  
+         8                                   Kew    Combined  Non-government    Prep-12  
+         9                        Mount Waverley    Combined  Non-government    Prep-12  
+         10                                  Kew    Combined  Non-government    Prep-12  
+         11                                  Kew    Combined  Non-government    Prep-12  
+         12                                  Kew    Combined  Non-government    Prep-12  
+         13                            Melbourne    Combined  Non-government    Prep-12  
+         14                            Glen Iris    Combined  Non-government    Prep-12  
+         15                        Brighton East    Combined  Non-government    Prep-12  
+         16                          Keysborough    Combined  Non-government    Prep-12  
+         17                              Burwood    Combined  Non-government    Prep-12  
+         18                               Ormond    Combined  Non-government    Prep-12  
+         19                             Armadale    Combined  Non-government    Prep-12  
+         20                               Toorak    Combined  Non-government    Prep-12  
+         21                              Mentone    Combined  Non-government    Prep-12  
+         22                             Brighton    Combined  Non-government    Prep-12  
+         23                             Ballarat    Combined  Non-government    Prep-12  
+         24                             Box Hill    Combined  Non-government    Prep-12  
+         25                          Keilor East    Combined  Non-government    Prep-12  
+         26                           Canterbury    Combined  Non-government    Prep-12  
+         27                               Toorak    Combined  Non-government    Prep-12  
+         28                              Ivanhoe    Combined  Non-government    Prep-12  
+         29                       Wantirna South    Combined  Non-government    Prep-12  
+         30                            Caulfield    Combined  Non-government    Prep-12  
+         31                             Hawthorn    Combined  Non-government    Prep-12  
+         32                             St Kilda    Combined  Non-government    Prep-12  
+         33                                  Kew    Combined  Non-government    Prep-12  
+         34                          South Yarra    Combined  Non-government    Prep-12  
+         35                            Melbourne    Combined  Non-government    Prep-12  
+         36                             Brighton    Combined  Non-government    Prep-12  
+         37                              Donvale    Combined  Non-government    Prep-12  
+         38                              Ivanhoe    Combined  Non-government    Prep-12  
+         39                        Ringwood East    Combined  Non-government    Prep-12  
+         40                            Truganina    Combined  Non-government    Prep-12  
+         41                              Mentone    Combined  Non-government    Prep-12  
+         42                             Essendon    Combined  Non-government    Prep-12  
+         43                             Werribee    Combined  Non-government    Prep-12  
+         44  The Margaret Lyttle Memorial School    Combined  Non-government    Prep-12  
+         45                          Mount Eliza    Combined  Non-government    Prep-12  
+         46                             Ringwood    Combined  Non-government    Prep-12  
+         47                       Wantirna South    Combined  Non-government    Prep-12  
+         48                              Berwick    Combined  Non-government    Prep-12  
+         49                           Shepparton    Combined  Non-government       5-12  
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
